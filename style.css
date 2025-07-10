@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: aquamarine;
+}
+.wrapper {
+  background: #fff;
+  max-width: 410px;
+  margin: 10% auto;
+  border-radius: 7px;
+  padding: 20px 0;
+}
+.task-input {
+  position: relative;
+  height: 50px;
+  padding: 0 20px;
+}
+.task-input img {
+  position: absolute;
+  height: 20px;
+  top: 50%;
+  transform: translate(17px, -50%);
+}
+.task-input input {
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  padding: 0 20px 0 45px;
+  outline: none;
+  border-radius: 4px;
+  border: 1px solid #999;
+}
+.task-input input::placeholder {
+  color: #bfbfbf;
+}
+.controls, li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.controls {
+  padding: 18px 20px;
+  border-bottom: 1px solid #999;
+}
+.filters span {
+  cursor: pointer;
+  margin: 0 10px;
+  font-size: 18px;
+}
+.filters span:first-child {
+  margin-left: 0;
+}
+.filters span.active {
+  color: #3c87ff;
+}
+.controls .clear-btn {
+  background: #3c87ff;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  padding: 5px 12px;
+}
+.controls .clear-btn:hover {
+  cursor: pointer;
+}
+.task-box {
+  margin: 20px 20px 10px 20px;
+}
+.task-box .task {
+  list-style: none;
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #999;
+}
+.task-box .task:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.task label {
+  display: flex;
+}
+.task label input {
+  margin-right: 10px;
+}
+.task .settings {
+  cursor: pointer;
+  position: relative;
+}
+.settings .settings-menu {
+  position: absolute;
+  padding: 5px 0;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  z-index: 2;
+  right: -1px;
+  top: 10px;
+  transform: scale(0);
+  transform-origin: top right;
+  transition: transform 0.2s ease;
+}
+.settings:hover .settings-menu {
+  transform: scale(1);
+}
+.settings li {
+  height: 25px;
+  padding: 18px 15px;
+  font-size: 16px;
+  display: flex;
+  justify-content: flex-start;
+}
+.settings li i {
+  padding-right: 5px;
+}
+.settings-menu li:hover {
+  background: #e9e5e5;
+}
