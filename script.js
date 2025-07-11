@@ -1,19 +1,39 @@
 const taskInput = document.querySelector(".task-input input");
+let taskBox = document.querySelector(".task-box");
+
+// getting local Storage todo-list
+let todos = JSON.parse(localStorage.getItem("todo-list"));
+
+function showTodo() {
+  let li = "";
+  todos.forEach( function (todo, id) {
+    li +=`<li class="task">
+            <label for="${id}">
+              <input type="checkbox" id="${id}">
+              <p>${todo.name}</p>
+            </label>
+            <div class="settings">
+              <i class="fa-solid fa-ellipsis"></i>
+              <ul class="settings-menu">
+                <li><i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>Edit</li>
+                <li><i class="fa-solid fa-trash-can" style="color: #000000;"></i>Delete</li>
+              </ul>
+            </div>
+          </li>`;
+  });
+  taskBox.innerHTML = li;
+}
 
 taskInput.addEventListener("keyup", function(e) {
   let userTask = taskInput.value.trim();
   if (e.key == "Enter" && userTask) {
-
-    // getting local Storage todo-list
-    try {
-      //gets the key and converts to valid JSON; if returns null, falls back to empty array
-      todos = JSON.parse(localStorage.getItem("todo-list")) || []; 
-    } catch {
-      todos = []; // If there is an error(corrupted or non-json data), initialize empty array.
+    if (!todos) {
+      todos = []; //if null, initialize with an empty array
     }
     let taskInfo = {name: userTask, status: "pending"};
     todos.push(taskInfo); 
     localStorage.setItem("todo-list", JSON.stringify(todos));
     taskInput.value = ""; 
+    showTodo();
   }
 })
