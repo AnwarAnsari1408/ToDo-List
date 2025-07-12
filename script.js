@@ -2,7 +2,7 @@ const taskInput = document.querySelector(".task-input input");
 let taskBox = document.querySelector(".task-box");
 let filters = document.querySelectorAll(".filters span");
 let clearAll = document.querySelector(".clear-btn");
-let activeFilter;
+let activeFilter = "all";
 
 // getting local Storage todo-list
 let todos = JSON.parse(localStorage.getItem("todo-list"));
@@ -73,7 +73,7 @@ function showTodo(filter) {
   }
   taskBox.innerHTML = li || `<span>You dont have ant task here</span>`;
 }
-showTodo("all");
+showTodo(activeFilter);
 
 function updateStatus(selectedTask) {
   let taskName = selectedTask.parentElement.lastElementChild;
