@@ -29,10 +29,10 @@ function showTodo() {
                 <p class="${isCompleted}">${todo.name}</p>
               </label>
               <div class="settings">
-                <i onClick = showMenu(this) class="fa-solid fa-ellipsis"></i>
+                <i onClick = "showMenu(this)" class="fa-solid fa-ellipsis"></i>
                 <ul class="settings-menu">
                   <li><i class="fa-solid fa-pen-to-square" style="color: #000000;"></i>Edit</li>
-                  <li><i class="fa-solid fa-trash-can" style="color: #000000;"></i>Delete</li>
+                  <li><i onClick="deleteTask(${id})" class="fa-solid fa-trash-can" style="color: #000000;"></i>Delete</li>
                 </ul>
               </div>
             </li>`;
@@ -64,5 +64,10 @@ function showMenu(selectedTask) {
       settingsMenu.classList.remove("show");
     }
   })
-  
+}
+
+function deleteTask(deleteId) {
+  todos.splice(deleteId, 1);
+  localStorage.setItem("todo-list", JSON.stringify(todos));
+  showTodo();
 }
