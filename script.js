@@ -1,6 +1,7 @@
 const taskInput = document.querySelector(".task-input input");
 let taskBox = document.querySelector(".task-box");
 let filters = document.querySelectorAll(".filters span");
+let clearAll = document.querySelector(".clear-btn");
 let activeFilter;
 
 // getting local Storage todo-list
@@ -15,6 +16,17 @@ filters.forEach(btn => {
     activeFilter = btn.id;
     showTodo(btn.id);
   });
+});
+
+clearAll.addEventListener("click", () => {
+  if (activeFilter == "all") {
+    todos.splice(0, todos.length);
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo(activeFilter);
+  }
+  else {
+    clearTasks(activeFilter);
+  }
 });
 
 taskInput.addEventListener("keyup", function(e) {
@@ -98,4 +110,15 @@ function editTask(taskId, taskName) {
   editId = taskId;
   isEditedTask = true;
   taskInput.value = taskName;
+}
+
+function clearTasks(activeFilter) {
+  for (let i = todos.length - 1; i > -1; i--) {
+    let todo = todos[i];
+    if (todo.status == activeFilter) {
+      todos.splice(i,1);
+    }
+  }
+  localStorage.setItem("todo-list", JSON.stringify(todos));
+  showTodo(activeFilter);
 }
